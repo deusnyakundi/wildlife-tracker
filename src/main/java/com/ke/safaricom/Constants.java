@@ -1,6 +1,5 @@
 package com.ke.safaricom;
 
-
 class Constants {
     static String HEALTHY = "Healthy";
     static String ILL = "Ill";

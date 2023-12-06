@@ -1,3 +1,4 @@
+import com.ke.safaricom.Animal;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -69,7 +70,7 @@ public class AnimalTest {
         Animal testAnimalTwo = setUpNewAnimal();
 
         testAnimalTwo.save();
-        assertEquals(Animal.find(testAnimalTwo.getId()),testAnimalTwo);
+        assertEquals(Animal.find(testAnimalTwo.getId()), testAnimalTwo);
     }
 
 }

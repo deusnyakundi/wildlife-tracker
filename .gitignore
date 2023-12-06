@@ -91,6 +91,7 @@ gradle
 gradlew.bat
 gradlew
 settings.gradle
+gradle-wrapper.jar
 .settings/
 .project
 .classpath

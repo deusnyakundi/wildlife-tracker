@@ -12,25 +12,28 @@ public class Sighting {
     private String ranger_name;
     private Timestamp time;
     private int id;
+
     public Sighting(int wildlifeId, String sightingZone, String rangerName, Timestamp sightingTime) {
         this.wild_life_id = wildlifeId;
         this.zone = sightingZone;
         this.ranger_name = rangerName;
         this.time = sightingTime;
     }
+
     public static List<Sighting> all() {
         String sql = "SELECT * FROM sightings";
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Sighting.class);
+
         }
     }
+
     public static Sighting find(int id) {
         try (Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE id=:id";
             return con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Sighting.class);
-
         }
     }
 
@@ -73,15 +76,19 @@ public class Sighting {
     public int getWildlifeId() {
         return wild_life_id;
     }
+
     public String getSightingZone() {
         return zone;
     }
+
     public String getRangerName() {
         return ranger_name;
     }
+
     public Timestamp getSightingTime() {
         return time;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,12 +99,13 @@ public class Sighting {
                 Objects.equals(ranger_name, sighting.ranger_name) &&
                 Objects.equals(time, sighting.time);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(wild_life_id, zone, ranger_name, time);
     }
-    public void save() {
 
+    public void save() {
         try (Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO sightings (wild_life_id,zone,ranger_name,time) VALUES(:wild_life_id,:zone,:ranger_name,:time)";
             this.id = (int) con.createQuery(sql, true)
@@ -112,6 +120,7 @@ public class Sighting {
             throw new UnsupportedOperationException("Please enter all details!");
         }
     }
+
     public int getId() {
         return id;
     }

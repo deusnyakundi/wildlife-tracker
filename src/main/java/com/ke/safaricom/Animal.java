@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.*;
 import java.util.List;
 
-public class Animal extends  Wildlife {
+public class Animal extends Wildlife {
     private int id;
     private String name;
     private static final String DATABASE_TYPE = "animal";
@@ -28,7 +28,6 @@ public class Animal extends  Wildlife {
                     .getKey();
 
         }
-        System.out.println(this.id);
 
     }
 
@@ -46,16 +45,6 @@ public class Animal extends  Wildlife {
     }
 
     @Override
-    public void setId() {
-
-    }
-
-    @Override
-    public void setName() {
-
-    }
-
-    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -69,6 +58,7 @@ public class Animal extends  Wildlife {
 
         }
     }
+
     public static Animal find(int id) {
         try (Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM animals WHERE id=:id";
@@ -88,6 +78,7 @@ public class Animal extends  Wildlife {
         return id == animal.id &&
                 Objects.equals(name, animal.name);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, name);

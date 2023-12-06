@@ -1,78 +1,80 @@
-import com.ke.safaricom.Endagered;
 import org.junit.Rule;
 import org.junit.Test;
+import com.ke.safaricom.Endangered;
 
 import static org.junit.Assert.*;
 
-public class EndageredTest {
+public class EndangeredTest {
     @Rule
     public DatabaseRule databaseRule = new DatabaseRule();
 
     @Test
-    public void EndageredInstantiatesCorrectly_True() {
-        Endagered testEndagered = setUpNewEndagered();
-        assertTrue(testEndagered instanceof Endagered);
+    public void EndangeredInstantiatesCorrectly_True() {
+        Endangered testEndangered = setUpNewEndangered();
+        assertTrue(testEndangered instanceof Endangered);
     }
 
-    private Endagered setUpNewEndagered() {
-        return new Endagered("young", "healthy", "lioness");
+    private Endangered setUpNewEndangered() {
+        return new Endangered("young", "healthy","lioness");
     }
 
     @Test
     public void testAnimalInstantiatesWithAge_True() {
-        Endagered testEndagered = setUpNewEndagered();
-        String testEndageredAge = "young";
-        assertEquals(testEndageredAge, testEndagered.getAge());
+        Endangered testEndangered = setUpNewEndangered();
+        String testEndangeredAge = "young";
+        assertEquals(testEndangeredAge, testEndangered.getAge());
     }
 
     @Test
     public void testAnimalInstantiatesWithName_True() {
-        Endagered testEndagered = setUpNewEndagered();
-        String testEndageredName = "lioness";
-        assertEquals(testEndageredName, testEndagered.getName());
+        Endangered testEndangered = setUpNewEndangered();
+        String testEndangeredName = "lioness";
+        assertEquals(testEndangeredName, testEndangered.getName());
     }
 
     @Test
     public void equalsReturnsTrueIfAttributesAreEqual() {
-        Endagered testEndagered = setUpNewEndagered();
-        Endagered testEndageredTwo = setUpNewEndagered();
-        assertEquals(testEndagered, testEndageredTwo);
+        Endangered testEndangered = setUpNewEndangered();
+        Endangered testEndangeredTwo = setUpNewEndangered();
+        assertEquals(testEndangered, testEndangeredTwo);
     }
 
     @Test
-    public void save_insertsObjectIntoDatabase_Endagered() {
-        Endagered testEndagered = setUpNewEndagered();
-        testEndagered.save();
-        assertEquals(Endagered.all().get(0), testEndagered);
+    public void save_insertsObjectIntoDatabase_Endangered() {
+        Endangered testEndangered = setUpNewEndangered();
+        testEndangered.save();
+        assertEquals(Endangered.all().get(0), testEndangered);
     }
 
 
     @Test
-    public void all_returnsAllInstancesOfEndagered_true() {
-        Endagered testEndagered = setUpNewEndagered();
-        testEndagered.save();
-        Endagered testEndageredTwo = setUpNewEndagered();
+    public void all_returnsAllInstancesOfEndangered_true() {
+        Endangered testEndangered = setUpNewEndangered();
+        testEndangered.save();
+        Endangered testEndangeredTwo = setUpNewEndangered();
 
-        testEndageredTwo.save();
-        System.out.println(Endagered.all().size());
-        assertEquals(Endagered.all().get(0), testEndagered);
-        assertEquals(Endagered.all().get(1), testEndageredTwo);
+        testEndangeredTwo.save();
+        System.out.println(Endangered.all().size());
+        assertEquals(Endangered.all().get(0), testEndangered);
+        assertEquals(Endangered.all().get(1), testEndangeredTwo);
     }
 
     @Test
     public void save_assignsIdToAnimal() {
-        Endagered testEndagered = setUpNewEndagered();
-        testEndagered.save();
-        Endagered savedAnimal = Endagered.all().get(0);
-        assertEquals(testEndagered.getId(), savedAnimal.getId());
+        Endangered testEndangered = setUpNewEndangered();
+        testEndangered.save();
+        Endangered savedAnimal = Endangered.all().get(0);
+        assertEquals(testEndangered.getId(), savedAnimal.getId());
     }
 
     @Test
     public void find_returnsAnimalWithSameId_secondAnimal() {
-        Endagered testEndagered = setUpNewEndagered();
-        testEndagered.save();
-        Endagered testEndageredTwo = setUpNewEndagered();
-        testEndageredTwo.save();
-        assertEquals(Endagered.find(testEndageredTwo.getId()), testEndageredTwo);
+        Endangered testEndangered = setUpNewEndangered();
+        testEndangered.save();
+        Endangered testEndangeredTwo = setUpNewEndangered();
+        testEndangeredTwo.save();
+        assertEquals(Endangered.find(testEndangeredTwo.getId()), testEndangeredTwo);
     }
+
+
 }

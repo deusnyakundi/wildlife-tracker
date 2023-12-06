@@ -7,18 +7,17 @@ By **Nyakundi Deus.**
 
 ## Description
 
-The website allows Rangers to track wildlife sightings in the area. A wildlife entity is either an Animal or an endagered animal.
-When  world life is spotted, the ranger submits a form to create a sighting. The ranger can choose from a drop down, which kind of species they have seen.
-A user can view rangers and clicking on them view all sightings they have done
+The website allows Rangers to track wildlife sightings in the area. A ranger may then log the sighting into the system as is either an Animal or an endangered animal.
+The app allows the ranger to specificy the location of the sighting and the health condition of the endangered animal. These options are available from drop down menus.
+A user is able to view all sightings made by rangers by clicking on them.
 
 
 ## Technologies Used
 
 - Java Spark 
-- PostgreSQL
-- SQL
-- JUnit-Unit Testing
-- Git and Github- Version control
+- PostgreSQL for DB
+- JUnit for Unit Testing
+- Git and Github for Version control
 
 ## Contact Information
 
@@ -27,17 +26,21 @@ A user can view rangers and clicking on them view all sightings they have done
 
 ## Set up instructions
 - Clone the project from https://github.com/deusnyakundi/wildlife-tracker.git
-- Set Up database and tables in your local machine Postgresql
+- Set Up database and tables in your local machine Postgresql via SQLShell as described below
 
-1.   ```CREATE DATABASE wildlife_tracker;```
-2. ```CREATE TABLE sightings(id serial PRIMARY KEY,wild_life_id int,zone varchar, ranger_name varchar,time timestamp);```
+1.   Use the following command to create a database```CREATE DATABASE wildlife_tracker;```
+2.  Connect to the database using the following command ```\c wildlife_tracker;```
+2. Use the following command to create tables```CREATE TABLE sightings(id serial PRIMARY KEY,wild_life_id int,zone varchar, ranger_name varchar,time timestamp);```
 3. ```CREATE TABLE animals(id serial PRIMARY KEY,name varchar,type varchar, age varchar,health varchar);```
 
 - Run `gradle build` to build the project and install the dependencies. The build artifacts will be stored in the `build/` directory.
 - Hit the `run` button to continue in App.java .
-- Navigate to `http://localhost:4567/` in your browser.
+- From your favourite browser, Navigate to `http://localhost:4567/`
 - Enjoy
 
+## To note during setup
+- Take note of the port your postgres runs on and adjust the port number accordingly
+- ensure you update the DB credentials to suit the credentials you used for postgres
 
 ### License
 

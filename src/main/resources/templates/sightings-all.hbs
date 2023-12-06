@@ -1,6 +1,8 @@
 {{#partial "content"}}
     <h4 class="mt-large text-white mb-5">Here goes Sightings from different rangers</h4>
+
     <div class="parallax"></div>
+
     {{#if sightings }}
         <div class="row mt-5">
             {{#each sightings}}
@@ -11,8 +13,10 @@
                 </div>
             {{/each}}
         </div>
+
     {{else}}
         <h1>No Sightings yet</h1>
     {{/if}}
 {{/partial}}
+
 {{>layout.hbs}}
