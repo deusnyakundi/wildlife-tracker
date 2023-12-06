@@ -27,10 +27,10 @@ public class Sighting {
     public static Sighting find(int id) {
         try (Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE id=:id";
-            Sighting sighting = con.createQuery(sql)
+            return con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Sighting.class);
-            return sighting;
+
         }
     }
 
@@ -97,7 +97,7 @@ public class Sighting {
         return Objects.hash(wild_life_id, zone, ranger_name, time);
     }
     public void save() {
-        System.out.println(this.wild_life_id);
+
         try (Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO sightings (wild_life_id,zone,ranger_name,time) VALUES(:wild_life_id,:zone,:ranger_name,:time)";
             this.id = (int) con.createQuery(sql, true)
@@ -108,7 +108,7 @@ public class Sighting {
                     .executeUpdate()
                     .getKey();
         }
-        if (zone.equals("")||ranger_name.equals("")) {
+        if (this == null) {
             throw new UnsupportedOperationException("Please enter all details!");
         }
     }

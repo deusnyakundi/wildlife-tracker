@@ -49,7 +49,7 @@ public class SightingTest {
         assertEquals(testSightingOne, testSightingTwo);
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void save_insertsObjectIntoDatabase_Sighting() {
         Timestamp timestamp = new Timestamp(new Date().getTime());
         Sighting testSighting = new Sighting(1, "ZoneA", "JohnDoe", timestamp);
@@ -97,7 +97,6 @@ public class SightingTest {
 
     private Sighting setUpNewSighting() {
         Timestamp timestamp = new Timestamp(new Date().getTime());
-        Timestamp rightNow = new Timestamp(new Date().getTime());
 
         return new Sighting(1, "Zone A", "John Doe", timestamp);
     }
