@@ -1,4 +1,6 @@
 package com.ke.safaricom;
+import org.sql2o.Connection;
+
 import java.sql.Timestamp;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -8,6 +10,7 @@ public class Sighting {
     private String sightingZone;
     private String rangerName;
     private Timestamp sightingTime;
+    private int id;
     public Sighting(int wildlifeId, String sightingZone, String rangerName, Timestamp sightingTime) {
         this.wildlifeId = wildlifeId;
         this.sightingZone = sightingZone;
@@ -43,6 +46,18 @@ public class Sighting {
         return Objects.hash(wildlifeId, sightingZone, rangerName, sightingTime);
     }
 
+
     public void save() {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO persons(id,wild_life_id,zone,ranger_name,time) VALUES(:id,:sightingZone,rangerName,sightingTime)";
+            con.createQuery(sql)
+                    .addParameter("id", this.id)
+                    .addParameter("wild_life_id", this.wildlifeId)
+                    .addParameter("zone", this.sightingZone)
+                    .addParameter("ranger_name", this.rangerName)
+                    .addParameter("time", this.sightingTime)
+                    .executeUpdate();
+
+        }
     }
 }
