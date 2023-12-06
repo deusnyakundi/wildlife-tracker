@@ -14,12 +14,16 @@ public class Sighting {
 
     }
 
-    @@ -19,4 +21,8 @@ public int getWildlifeId() {
-        public String getSightingZone() {
+    @
+    @ -19,4+21,8@@
+
+    public int getWildlifeId() {
+        public String getSightingZone () {
             return sightingZone;
         }
 
-        public String getRangerName() {
+        public String getRangerName () {
             return rangerName;
         }
     }
+}
