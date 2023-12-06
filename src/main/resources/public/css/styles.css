@@ -65,3 +65,8 @@ background-image:url("https://img4.goodfon.com/wallpaper/nbig/f/7d/lev-zver-fon.
   background-repeat: no-repeat;
   background-size: 100%;
   }
+
+  .btn-custom:hover{
+  background-color: #ed1543;
+  border-color: #ffffff;
+  }
