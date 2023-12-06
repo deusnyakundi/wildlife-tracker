@@ -1,10 +1,14 @@
 package com.ke.safaricom;
 
-import java.util.Arrays;
-import java.util.List;
 
-public class Constants {
-    static List<String> animalHealth = Arrays.asList("Healthy", "ill", "Okay");
-    static List<String> animalAge = Arrays.asList("Newborn", "Young", "Adult");
+class Constants {
+    static String HEALTHY = "Healthy";
+    static String ILL = "Ill";
+    static String OKAY = "Okay";
+
+    static String NEWBORN = "Newborn";
+    static String YOUNG = "Young";
+    static String ADULT = "Adult";
+
 
 }
