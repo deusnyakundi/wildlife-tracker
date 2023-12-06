@@ -18,12 +18,19 @@ public class Sighting {
         this.ranger_name = rangerName;
         this.time = sightingTime;
     }
-
     public static List<Sighting> all() {
         String sql = "SELECT * FROM sightings";
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Sighting.class);
-
+        }
+    }
+    public static Sighting find(int id) {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM sightings WHERE id=:id";
+            Sighting sighting = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Sighting.class);
+            return sighting;
         }
     }
     public int getWildlifeId() {
@@ -35,14 +42,23 @@ public class Sighting {
     public String getRangerName() {
         return ranger_name;
     }
-
     public Timestamp getSightingTime() {
         return time;
-    }  @Override
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sighting sighting = (Sighting) o;
+        return wild_life_id == sighting.wild_life_id &&
+                Objects.equals(zone, sighting.zone) &&
+                Objects.equals(ranger_name, sighting.ranger_name) &&
+                Objects.equals(time, sighting.time);
+    }
+    @Override
     public int hashCode() {
         return Objects.hash(wild_life_id, zone, ranger_name, time);
     }
-
     public void save() {
         System.out.println(this.wild_life_id);
         try (Connection con = DB.sql2o.open()) {
@@ -55,16 +71,11 @@ public class Sighting {
                     .executeUpdate()
                     .getKey();
         }
-    }
-    public static Sighting find(int id) {
-        try (Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings WHERE id=:id";
-            Sighting sighting = con.createQuery(sql)
-                    .addParameter("id", id)
-                    .executeAndFetchFirst(Sighting.class);
-            return sighting;
+        if (zone.equals("")||ranger_name.equals("")) {
+            throw new UnsupportedOperationException("Please enter all details!");
         }
     }
+
     public int getId() {
         return id;
     }
