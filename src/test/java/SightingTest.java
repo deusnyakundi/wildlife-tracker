@@ -41,14 +41,12 @@ public class SightingTest {
         Timestamp timestamp = new Timestamp(new Date().getTime());
         assertEquals(timestamp, testSighting.getSightingTime());
     }
-
-    //
     @Test
     public void equalsReturnsTrueIfAttributesAreEqual() {
         Timestamp timestamp = new Timestamp(new Date().getTime());
         Sighting testSightingOne = setUpNewSighting();
         Sighting testSightingTwo = new Sighting(1, "Zone A", "John Doe", timestamp);
-        assertTrue(testSightingOne.equals(testSightingTwo));
+        assertEquals(testSightingOne, testSightingTwo);
     }
 
     @Test
@@ -68,16 +66,13 @@ public class SightingTest {
         assertEquals(Sighting.all().get(0), sightingOne);
         assertEquals(Sighting.all().get(1), sightingTwo);
     }
-
     @Test
     public void save_assignsIdToSighting() {
         Sighting sightingOne = setUpNewSighting();
         sightingOne.save();
         Sighting savedSighting = Sighting.all().get(0);
         assertEquals(sightingOne.getId(), savedSighting.getId());
-
     }
-
     @Test
     public void find_returnsSightingWithSameId_secondSighting() {
         Sighting sighting = setUpNewSighting();
@@ -86,22 +81,17 @@ public class SightingTest {
         secondSighting.save();
         assertEquals(Sighting.find(secondSighting.getId()), secondSighting);
     }
-
     //associate one wildlife to many sightings
     @Test
     public void save_savesWildlifeIntoDB_True() {
         Animal animal = new Animal("Lion");
         animal.save();
-
         Timestamp timestamp = new Timestamp(new Date().getTime());
         Sighting sighting = new Sighting(animal.getId(), "zone A", "Jacob", timestamp);
         sighting.save();
-
         Sighting sighting1=Sighting.find(sighting.getId());
         assertEquals(sighting1.getWildlifeId(),animal.getId());
-
     }
-
     private Sighting setUpNewSighting() {
         Timestamp timestamp = new Timestamp(new Date().getTime());
         return new Sighting(1, "Zone A", "John Doe", timestamp);
