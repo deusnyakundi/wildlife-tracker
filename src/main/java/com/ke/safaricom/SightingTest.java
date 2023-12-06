@@ -1,7 +1,6 @@
 package com.ke.safaricom;
 import org.junit.Test;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -23,8 +22,9 @@ public class SightingTest {
     public void SightingInstantiatesWithRangerName_True() {
         Sighting testSighting = setUpNewSighting();
         String testRangerName = "John Doe";
-        assertEquals(testRangerName,testSighting.getRangerName());
+        assertEquals(testRangerName, testSighting.getRangerName());
     }
+
     @Test
     public void SightingInstantiatesWithSightingZone_True() {
         Sighting testSighting = setUpNewSighting();
@@ -33,10 +33,18 @@ public class SightingTest {
     }
 
     @Test
-    public void SightingInstantiatesWithTimestamp_True(){
-        Sighting testSighting=setUpNewSighting();
-        Timestamp timestamp=new Timestamp(new Date().getTime());
-        assertEquals(timestamp,testSighting.getSightingTime());
+    public void SightingInstantiatesWithTimestamp_True() {
+        Sighting testSighting = setUpNewSighting();
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        assertEquals(timestamp, testSighting.getSightingTime());
+    }
+
+
+    @Test
+    public void save_insertsObjectIntoDatabase_Sighting() {
+        Sighting sighting = setUpNewSighting();
+        sighting.save();
+        assertTrue(Sighting.all().get(0).equals(sighting));
     }
 
     private Sighting setUpNewSighting() {
@@ -44,4 +52,5 @@ public class SightingTest {
         return new Sighting(1, "Zone A", "John Doe", timestamp);
     }
 
-}
+
+}}
