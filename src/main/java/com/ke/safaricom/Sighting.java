@@ -1,29 +1,29 @@
 package com.ke.safaricom;
-
-import java.security.Timestamp;
-
-public class Sighting {
+import java.sql.Timestamp;
+ppublic class Sighting {
     private int wildlifeId;
     private String sightingZone;
     private String rangerName;
+    private Timestamp sightingTime;
 
     public Sighting(int wildlifeId, String sightingZone, String rangerName, Timestamp sightingTime) {
         this.wildlifeId = wildlifeId;
         this.sightingZone = sightingZone;
         this.rangerName = rangerName;
-
+        this.sightingTime = sightingTime;
     }
 
-    @
-    @ -19,4+21,8@@
-
     public int getWildlifeId() {
-        public String getSightingZone () {
-            return sightingZone;
-        }
+        return wildlifeId;
+    }
+    public String getSightingZone() {
+        return sightingZone;
+    }
+    public String getRangerName() {
+        return rangerName;
+    }
 
-        public String getRangerName () {
-            return rangerName;
-        }
+    public Timestamp getSightingTime() {
+        return sightingTime;
     }
 }

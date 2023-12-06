@@ -21,6 +21,7 @@ dependencies {
     implementation group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
     implementation "com.sparkjava:spark-core:2.6.0"
     implementation "com.sparkjava:spark-template-handlebars:2.5.5"
+    testImplementation 'junit:junit:4.13.1'
 }
 
 test {
