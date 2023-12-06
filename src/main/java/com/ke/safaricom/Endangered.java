@@ -83,6 +83,11 @@ public class Endagered extends Wildlife {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public int getId() {
+        return id;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(age, id, health, type);
