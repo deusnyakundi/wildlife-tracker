@@ -1,10 +1,6 @@
 package com.ke.safaricom.interfaces;
-
-public class Wildlife {
-    Object findByName(String wildLifeName);
-
+public interface Wildlife {
     int getId();
-
     String getName();
     void setId();
     void setName();
