@@ -1,6 +1,6 @@
 import com.ke.safaricom.Sighting;
 import org.junit.Test;
-
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -14,9 +14,26 @@ public class SightingTest {
     }
     @Test
     public void SightingInstantiatesWithWildlifeId_True() {
-        Sighting testSighting = setUpNewSighting();
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        Sighting testSighting =  new Sighting(1, "Zone A", "John Doe", timestamp);
         int testWildlifeId = 1;
         assertEquals(testWildlifeId, testSighting.getWildlifeId());
+    }
+
+    @Test
+    public void equalsReturnsTrueIfAttributesAreEqual() {
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        Sighting testSightingOne = setUpNewSighting();
+        Sighting testSightingTwo =new  Sighting(1, "Zone A", "John Doe", timestamp);
+        assertTrue(testSightingOne.equals(testSightingTwo));
+    }
+
+    @Test
+    public void save_insertsObjectIntoDatabase_Sighting() {
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        Sighting testSighting =  new Sighting(1, "ZoneA", "JohnDoe", timestamp);
+        testSighting.save();
+        assertEquals(Sighting.all().get(0), testSighting);
     }
     @Test
     public void SightingInstantiatesWithRangerName_True() {
@@ -53,8 +70,16 @@ public class SightingTest {
         Timestamp timestamp = new Timestamp(new Date().getTime());
         Sighting sightingTwo = new Sighting(2, "RiverSide", "Jane Doe", timestamp);
         sightingTwo.save();
-        assertEquals(true, Sighting.all().get(0).equals(sightingOne));
-        assertEquals(true, Sighting.all().get(1).equals(sightingTwo));
+        assertEquals(Sighting.all().get(0), sightingOne);
+        assertEquals(Sighting.all().get(1), sightingTwo);
+    }
+
+    @Test
+    public void save_assignsIdToSighting(){
+        Sighting sightingOne = setUpNewSighting();
+        sightingOne.save();
+        Sighting savedSighting=Sighting.all().get(0);
+        assertEquals(sightingOne.getId(),savedSighting.getId());
     }
     private Sighting setUpNewSighting() {
         Timestamp timestamp = new Timestamp(new Date().getTime());
@@ -62,4 +87,4 @@ public class SightingTest {
     }
 
 
-}}
+}

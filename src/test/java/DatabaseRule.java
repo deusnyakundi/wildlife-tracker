@@ -9,13 +9,13 @@ public class DatabaseRule extends ExternalResource {
     public DatabaseRule databaseRule = new DatabaseRule();
     @Override
     protected void before() throws Throwable {
-        DB.sql2o = new Sql2o("jdbc://localhost:5432/wildlife_tracker_test", "postgres", "superadmin");
+        DB.sql2o = new Sql2o("jdbc://localhost:5432/wild_life_test", "postgres", "superadmin");
     }
 
     @Override
     protected void after() {
         try (Connection con = DB.sql2o.open()) {
-            String deleteSightingsQuery = "DELETE FROM sightings";
+            String deleteSightingsQuery = "DELETE FROM sightings *";
             con.createQuery(deleteSightingsQuery).executeUpdate();
         }
     }
