@@ -38,10 +38,6 @@ A user is able to view all sightings made by rangers by clicking on them.
 - From your favourite browser, Navigate to `http://localhost:4567/`
 - Enjoy
 
-## To note during setup
-- Take note of the port your postgres runs on and adjust the port number accordingly
-- ensure you update the DB credentials to suit the credentials you used for postgres
-
 ### License
 
 MIT License
