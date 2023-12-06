@@ -1,4 +1,4 @@
-package com.ke.safaricom;
+import com.ke.safaricom.Sighting;
 import org.junit.Test;
 
 import java.sql.Timestamp;
