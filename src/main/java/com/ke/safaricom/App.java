@@ -1,5 +1,6 @@
 package com.ke.safaricom;
 
+import com.ke.safaricom.interfaces.Wildlife;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -37,19 +38,23 @@ public class App {
         post("/sightings/add", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String wildLifeName = request.queryParams("wildlifeName");
-            Wildlife wildlife = (Wildlife) Wildlife.findByName(wildLifeName);
-            int wildlifeId = wildlife.getId();
+            Animal animal = new Animal(wildLifeName);
+
+            animal.save();
+
+            int wildlifeId = animal.getId();
             String zone = request.queryParams("location");
             String rangerName = request.queryParams("rangerName");
             String timeString = request.queryParams("time");
-            Timestamp time = new Timestamp(new Date(timeString).getTime());
+            Timestamp time = new Timestamp(new Date().getTime());
 
             Sighting sighting = new Sighting(wildlifeId, zone, rangerName, time);
             sighting.save();
 
             response.redirect("/");
 
-        });
+            return null;
+        }, new HandlebarsTemplateEngine());
 
     }
 }

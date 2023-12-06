@@ -1,11 +1,12 @@
-import com.ke.safaricom.DB;
+package com.ke.safaricom;
+
 import com.ke.safaricom.interfaces.Wildlife;
 import org.sql2o.Connection;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Animal extends Wildlife {
+public class Animal implements Wildlife {
     private int id;
     private String name;
 
@@ -14,15 +15,16 @@ public class Animal extends Wildlife {
     }
 
     public void save() {
-        System.out.println(this.name);
         try (Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO animals (name) VALUES(:name)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.getName())
                     .executeUpdate()
                     .getKey();
+
         }
-    }
+        System.out.println(this.id);
+        }
 
 
     public static List<Animal> all() {
