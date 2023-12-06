@@ -1,6 +1,6 @@
 # Wildlife Tracker
 A wildlife tracking web application
-
+![img.png](src%2Fmain%2Fresources%2Fpublic%2Fimg.png)
 This application is designed to assist rangers to track, collect and update info about wild animals
 
 By **Nyakundi Deus.**
